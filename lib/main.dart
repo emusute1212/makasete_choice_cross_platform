@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'home.dart';
-import 'make_members.dart';
+import 'package:makasete_choice_cross_platform/view/home.dart';
+import 'package:makasete_choice_cross_platform/view/make_members.dart';
 
 void main() => runApp(MyApp());
 
