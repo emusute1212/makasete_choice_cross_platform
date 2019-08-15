@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
+import 'make_members.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'まかせて★チョイス',
-      theme: ThemeData.dark(),
-      home: MyHomePage(title: 'まかせて★︎チョイス'),
-    );
+        title: 'まかせて★チョイス',
+        theme: ThemeData.dark(),
+        home: MyHomePage(title: 'まかせて★︎チョイス'),
+        routes: <String, WidgetBuilder>{
+          '/make_members': (BuildContext context) =>
+              MakeMembersPage(title: 'メンバー作成ページ'),
+        });
   }
 }
 
@@ -22,13 +27,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,21 +38,21 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'ヌッ！:',
+            RaisedButton(
+              child: Text('メンバー作成'),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/make_members');
+              },
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+            RaisedButton(
+              child: Text('グループ作成'),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/make_members');
+              },
             ),
           ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+        )
+      )
     );
   }
 }
