@@ -9,6 +9,8 @@ class MakeMembersPage extends StatefulWidget {
 }
 
 class _MakeMembersPage extends State<MakeMembersPage> {
+  final _textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,10 +21,17 @@ class _MakeMembersPage extends State<MakeMembersPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'めんばーさくせいページ',
-              style: Theme.of(context).textTheme.display1,
+            TextField(
+              enabled: true,
+              maxLines: 1,
+              controller: _textController,
             ),
+            RaisedButton(
+              child: Text('＋'),
+              onPressed: () {
+                print("add : " + _textController.text);
+              },
+            )
           ],
         ),
       ),
