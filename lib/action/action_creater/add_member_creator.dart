@@ -14,6 +14,7 @@ class AddMemberCreator {
 
   void addMember(String memberName) {
     Payload payload = Payload<String>(Action.ADD_MEMBER, memberName);
+    repository.addMember(memberName);
     dispatcher.dispatch(payload);
   }
 }
