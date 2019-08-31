@@ -1,3 +1,4 @@
+import 'package:makasete_choice_cross_platform/action/action.dart';
 import 'package:makasete_choice_cross_platform/data/entity/member_entity.dart';
 import 'package:makasete_choice_cross_platform/di/component.dart';
 import 'package:makasete_choice_cross_platform/dispatcher/callback.dart';
@@ -15,6 +16,9 @@ class MemberStore extends Callback {
 
   @override
   void invoke(Payload payload) {
+    if (payload.getAction() != Action.ADD_MEMBER) {
+      return;
+    }
     members.add(MemberEntity(members.length, payload.getValue()));
   }
 }
