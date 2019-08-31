@@ -14,7 +14,6 @@ class AddMemberCreator {
 
   void addMember(String memberName) {
     Payload payload = Payload<String>(Action.ADD_MEMBER, memberName);
-    print(payload.getValue());
     dispatcher.dispatch(payload);
   }
 }
