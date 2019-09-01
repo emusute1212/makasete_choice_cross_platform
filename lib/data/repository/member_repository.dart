@@ -1,11 +1,13 @@
+import 'package:makasete_choice_cross_platform/data/entity/member_entity.dart';
+
 class MemberRepository {
-  final List<String> _cache = [];
+  final List<MemberEntity> _cache = [];
 
   void addMember(String member) {
-    _cache.add(member);
+    _cache.add(MemberEntity(_cache.length - 1, member));
   }
 
-  List<String> loadMember() {
+  List<MemberEntity> getMembers() {
     return _cache;
   }
 }

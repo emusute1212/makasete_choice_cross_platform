@@ -11,15 +11,15 @@ class MemberStore {
 
   MemberStore() {
     Component().injectMemberStore(this);
-    dispatcher.register(AddMemberCallback(members));
+    dispatcher.register(AddMemberCallback(this));
   }
 }
 
 class AddMemberCallback extends Callback {
-  List<MemberEntity> _members;
+  MemberStore _store;
 
-  AddMemberCallback(List<MemberEntity> members) {
-    this._members = members;
+  AddMemberCallback(MemberStore store) {
+    this._store = store;
   }
 
   @override
@@ -27,6 +27,6 @@ class AddMemberCallback extends Callback {
     if (payload.getAction() != Action.ADD_MEMBER) {
       return;
     }
-    _members.add(MemberEntity(_members.length, payload.getValue()));
+    _store.members = payload.getValue();
   }
 }
