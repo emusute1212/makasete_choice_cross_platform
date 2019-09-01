@@ -5,13 +5,21 @@ import 'package:makasete_choice_cross_platform/dispatcher/callback.dart';
 import 'package:makasete_choice_cross_platform/dispatcher/dispatcher.dart';
 import 'package:makasete_choice_cross_platform/dispatcher/payload.dart';
 
-class MemberStore extends Callback {
+class MemberStore {
   List<MemberEntity> members = [];
   Dispatcher dispatcher;
 
   MemberStore() {
     Component().injectMemberStore(this);
-    dispatcher.register(this);
+    dispatcher.register(AddMemberCallback(members));
+  }
+}
+
+class AddMemberCallback extends Callback {
+  List<MemberEntity> _members;
+
+  AddMemberCallback(List<MemberEntity> members) {
+    this._members = members;
   }
 
   @override
@@ -19,6 +27,6 @@ class MemberStore extends Callback {
     if (payload.getAction() != Action.ADD_MEMBER) {
       return;
     }
-    members.add(MemberEntity(members.length, payload.getValue()));
+    _members.add(MemberEntity(_members.length, payload.getValue()));
   }
 }
