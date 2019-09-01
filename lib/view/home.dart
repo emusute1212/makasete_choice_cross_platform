@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
             RaisedButton(
               child: Text('グループ作成'),
               onPressed: () {
-                Navigator.of(context).pushNamed('/make_members');
+                Navigator.of(context).pushNamed('/make_group');
               },
             ),
           ],
