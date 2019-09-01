@@ -1,17 +1,22 @@
 class MemberEntity {
-  int index;
-  String name;
+  int _index;
+  String _name;
 
   MemberEntity(int index, String name) {
-    this.index = index;
-    this.name = name;
+    this._index = index;
+    this._name = name;
   }
 
   int getIndex() {
-    return this.index;
+    return this._index;
   }
 
   String getName() {
-    return this.name;
+    return this._name;
+  }
+
+  @override
+  String toString() {
+    return "index: " + _index.toString() + ", name: " + _name;
   }
 }
