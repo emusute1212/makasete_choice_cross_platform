@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:makasete_choice_cross_platform/action/action_creater/add_member_creator.dart';
+import 'package:makasete_choice_cross_platform/action/action_creater/init_member_creator.dart';
 import 'package:makasete_choice_cross_platform/store/member_store.dart';
 
 class MakeMembersPage extends StatefulWidget {
@@ -12,8 +13,15 @@ class MakeMembersPage extends StatefulWidget {
 
 class _MakeMembersPage extends State<MakeMembersPage> {
   final _textController = TextEditingController();
+  InitMemberCreator _initMemberCreator = InitMemberCreator();
   AddMemberCreator _addMemberCreator = AddMemberCreator();
   MemberStore _memberStore = MemberStore();
+
+  @override
+  void initState() {
+    super.initState();
+    _initMemberCreator.initMember();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +42,7 @@ class _MakeMembersPage extends State<MakeMembersPage> {
               child: Text('＋'),
               onPressed: () {
                 setState(() {
-                _addMemberCreator.addMember(_textController.text);
+                  _addMemberCreator.addMember(_textController.text);
                 });
               },
             ),
