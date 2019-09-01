@@ -7,6 +7,10 @@ class MemberRepository {
     _cache.add(MemberEntity(_cache.length - 1, member));
   }
 
+  void removeMember(int index) {
+    _cache.removeAt(index);
+  }
+
   List<MemberEntity> getMembers() {
     return _cache;
   }

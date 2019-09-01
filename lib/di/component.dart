@@ -28,6 +28,14 @@ class Component {
         (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();
   }
 
+  void injectRemoveMemberCreator(RemoveMemberCreator removeMemberCreator) {
+    removeMemberCreator.repository =
+        (_modules["MemberRepositoryModule"] as MemberRepositoryModule)
+            .provideMemberRepository();
+    removeMemberCreator.dispatcher =
+        (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();
+  }
+
   void injectMemberStore(MemberStore memberStore) {
     memberStore.dispatcher =
         (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();

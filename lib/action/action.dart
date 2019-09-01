@@ -1,4 +1,5 @@
 enum Action{
   INIT_MEMBER,
-  ADD_MEMBER
+  ADD_MEMBER,
+  REMOVE_MEMBER
 }

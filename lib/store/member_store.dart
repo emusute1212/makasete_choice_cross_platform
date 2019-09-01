@@ -13,6 +13,7 @@ class MemberStore {
     Component().injectMemberStore(this);
     dispatcher.register(InitMemberCallback(this));
     dispatcher.register(AddMemberCallback(this));
+    dispatcher.register(RemoveMemberCallback(this));
   }
 }
 
@@ -42,6 +43,22 @@ class InitMemberCallback extends Callback {
   @override
   void invoke(Payload payload) {
     if (payload.getAction() != Action.INIT_MEMBER) {
+      return;
+    }
+    _store.members = payload.getValue();
+  }
+}
+
+class RemoveMemberCallback extends Callback {
+  MemberStore _store;
+
+  RemoveMemberCallback(MemberStore store) {
+    this._store = store;
+  }
+
+  @override
+  void invoke(Payload payload) {
+    if (payload.getAction() != Action.REMOVE_MEMBER) {
       return;
     }
     _store.members = payload.getValue();
