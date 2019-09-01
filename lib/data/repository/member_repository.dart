@@ -8,9 +8,7 @@ class MemberRepository {
   }
 
   void removeMember(int index) {
-    print("before: " + _cache.toString());
     _cache.removeWhere((member) => member.getIndex() == index);
-    print("after: " + _cache.toString());
   }
 
   List<MemberEntity> getMembers() {

@@ -6,21 +6,25 @@ import 'package:makasete_choice_cross_platform/dispatcher/dispatcher.dart';
 import 'package:makasete_choice_cross_platform/dispatcher/payload.dart';
 
 class MemberStore {
-  List<MemberEntity> members = [];
+  List<MemberEntity> _members = [];
   Dispatcher dispatcher;
 
   MemberStore() {
     Component().injectMemberStore(this);
-    dispatcher.register(InitMemberCallback(this));
-    dispatcher.register(AddMemberCallback(this));
-    dispatcher.register(RemoveMemberCallback(this));
+    dispatcher.register(_InitMemberCallback(this));
+    dispatcher.register(_AddMemberCallback(this));
+    dispatcher.register(_RemoveMemberCallback(this));
+  }
+
+  List<MemberEntity> getMembers() {
+    return this._members;
   }
 }
 
-class AddMemberCallback extends Callback {
+class _AddMemberCallback extends Callback {
   MemberStore _store;
 
-  AddMemberCallback(MemberStore store) {
+  _AddMemberCallback(MemberStore store) {
     this._store = store;
   }
 
@@ -29,14 +33,14 @@ class AddMemberCallback extends Callback {
     if (payload.getAction() != Action.ADD_MEMBER) {
       return;
     }
-    _store.members = payload.getValue();
+    _store._members = payload.getValue();
   }
 }
 
-class InitMemberCallback extends Callback {
+class _InitMemberCallback extends Callback {
   MemberStore _store;
 
-  InitMemberCallback(MemberStore store) {
+  _InitMemberCallback(MemberStore store) {
     this._store = store;
   }
 
@@ -45,14 +49,14 @@ class InitMemberCallback extends Callback {
     if (payload.getAction() != Action.INIT_MEMBER) {
       return;
     }
-    _store.members = payload.getValue();
+    _store._members = payload.getValue();
   }
 }
 
-class RemoveMemberCallback extends Callback {
+class _RemoveMemberCallback extends Callback {
   MemberStore _store;
 
-  RemoveMemberCallback(MemberStore store) {
+  _RemoveMemberCallback(MemberStore store) {
     this._store = store;
   }
 
@@ -61,6 +65,6 @@ class RemoveMemberCallback extends Callback {
     if (payload.getAction() != Action.REMOVE_MEMBER) {
       return;
     }
-    _store.members = payload.getValue();
+    _store._members = payload.getValue();
   }
 }

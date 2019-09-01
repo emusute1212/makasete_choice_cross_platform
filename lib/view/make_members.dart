@@ -14,10 +14,10 @@ class MakeMembersPage extends StatefulWidget {
 
 class _MakeMembersPage extends State<MakeMembersPage> {
   final _textController = TextEditingController();
-  InitMemberCreator _initMemberCreator = InitMemberCreator();
-  AddMemberCreator _addMemberCreator = AddMemberCreator();
-  RemoveMemberCreator _removeMemberCreator = RemoveMemberCreator();
-  MemberStore _memberStore = MemberStore();
+  final InitMemberCreator _initMemberCreator = InitMemberCreator();
+  final AddMemberCreator _addMemberCreator = AddMemberCreator();
+  final RemoveMemberCreator _removeMemberCreator = RemoveMemberCreator();
+  final MemberStore _memberStore = MemberStore();
 
   @override
   void initState() {
@@ -50,7 +50,7 @@ class _MakeMembersPage extends State<MakeMembersPage> {
             ),
             Expanded(
               child: ListView(
-                children: _memberStore.members.map((member) {
+                children: _memberStore.getMembers().map((member) {
                   return Dismissible(
                     key: Key(member.getIndex().toString()),
                     child: ListTile(
@@ -58,13 +58,9 @@ class _MakeMembersPage extends State<MakeMembersPage> {
                     ),
                     background: Container(color: Colors.red),
                     confirmDismiss: (direction) async {
-                      // ここで確認を行う
-                      // Future<bool> で確認結果を返す
-                      // False の場合削除されない
                       return true;
                     },
                     onDismissed: (direction) {
-                      // 削除アニメーションが完了し、リサイズが終了したときに呼ばれる
                       setState(() {
                         _removeMemberCreator.removeMember(member.getIndex());
                       });
