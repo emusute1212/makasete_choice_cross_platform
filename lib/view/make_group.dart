@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:makasete_choice_cross_platform/action/action_creater/grouping_creator.dart';
 import 'package:makasete_choice_cross_platform/action/action_creater/init_member_creator.dart';
+import 'package:makasete_choice_cross_platform/data/entity/grouping_member_entity.dart';
 import 'package:makasete_choice_cross_platform/store/group_store.dart';
 
 class MakeGroupPage extends StatefulWidget {
@@ -22,13 +23,14 @@ class _MakeGroupPage extends State<MakeGroupPage> {
   void initState() {
     super.initState();
     _initMemberCreator.initMember();
-    _dropDownMenuItems = new List<DropdownMenuItem<String>>.generate(
+    _dropDownMenuItems = List<DropdownMenuItem<String>>.generate(
       _groupStore.getMembers().length,
       (i) => DropdownMenuItem(
-            value: i.toString(),
+            value: (i + 1).toString(),
             child: Text((i + 1).toString()),
           ),
     );
+    _splitNumber = _groupStore.getMembers().length;
   }
 
   @override
@@ -52,12 +54,35 @@ class _MakeGroupPage extends State<MakeGroupPage> {
             DropdownButton(
               items: _dropDownMenuItems,
               onChanged: (value) {
-                print(value);
                 setState(() {
                   _splitNumber = int.parse(value);
                 });
               },
               value: _splitNumber.toString(),
+            ),
+            RaisedButton(
+              child: Text('チョイス★する！'),
+              onPressed: () {
+                setState(() {
+                  _groupingCreator.groupMember(
+                      _groupStore.getMembers(), _splitNumber);
+                });
+              },
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  GroupingMemberEntity team =
+                      _groupStore.getGroupingMembers()[index];
+                  return Text("チーム " +
+                      team.getName() +
+                      ": " +
+                      team.getMembers().map<String>((member) {
+                        return member.getName();
+                      }).join(", "));
+                },
+                itemCount: _groupStore.getGroupingMembers().length,
+              ),
             ),
           ],
         ),
