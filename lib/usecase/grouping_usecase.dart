@@ -7,16 +7,28 @@ class GroupingUsecase {
   List<GroupingMemberEntity> groupMember(
       List<MemberEntity> members, int splitNumber) {
     List<MemberEntity> shuffledMembers = List.from(members);
-    shuffledMembers.shuffle(Random.secure());
     List<GroupingMemberEntity> groupingMembers = [];
 
-    shuffledMembers.asMap().map((index, member) {
-      MapEntry<int, MemberEntity>(
-          index % splitNumber, shuffledMembers[index % splitNumber]);
-    }).forEach((index, members) {
-      groupingMembers.add(GroupingMemberEntity(index, members));
+    shuffledMembers.shuffle(Random.secure());
+
+    shuffledMembers.asMap().forEach((index, member) {
+      int splitTarget = index % splitNumber;
+      if (_containsIndex(groupingMembers, splitTarget)) {
+        groupingMembers[splitTarget].getMembers().add(member);
+      } else {
+        groupingMembers.add(GroupingMemberEntity(index.toString(), [member]));
+      }
     });
 
     return groupingMembers;
+  }
+
+  bool _containsIndex<T>(List<T> list, int indexTarget) {
+    for (int i = 0; i < list.length; i++) {
+      if (i == indexTarget) {
+        return true;
+      }
+    }
+    return false;
   }
 }
