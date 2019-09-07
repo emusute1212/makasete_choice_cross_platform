@@ -27,19 +27,19 @@ class Component {
     "GroupingMemberRepositoryModule": GroupingMemberRepositoryModule()
   };
 
-  void injectAddMemberActionCreator(AddMemberActionCreator addMemberCreator) {
-    addMemberCreator.repository =
+  void injectAddMemberActionCreator(AddMemberActionCreator addMemberActionCreator) {
+    addMemberActionCreator.repository =
         (_modules["MemberRepositoryModule"] as MemberRepositoryModule)
             .provideMemberRepository();
-    addMemberCreator.dispatcher =
+    addMemberActionCreator.dispatcher =
         (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();
   }
 
-  void injectRemoveMemberActionCreator(RemoveMemberActionCreator removeMemberCreator) {
-    removeMemberCreator.repository =
+  void injectRemoveMemberActionCreator(RemoveMemberActionCreator removeMemberActionCreator) {
+    removeMemberActionCreator.repository =
         (_modules["MemberRepositoryModule"] as MemberRepositoryModule)
             .provideMemberRepository();
-    removeMemberCreator.dispatcher =
+    removeMemberActionCreator.dispatcher =
         (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();
   }
 
@@ -48,11 +48,11 @@ class Component {
         (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();
   }
 
-  void injectInitMemberActionCreator(InitMemberActionCreator initMemberCreator) {
-    initMemberCreator.repository =
+  void injectInitMemberActionCreator(InitMemberActionCreator initMemberActionCreator) {
+    initMemberActionCreator.repository =
         (_modules["MemberRepositoryModule"] as MemberRepositoryModule)
             .provideMemberRepository();
-    initMemberCreator.dispatcher =
+    initMemberActionCreator.dispatcher =
         (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();
   }
 
@@ -61,13 +61,13 @@ class Component {
         (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();
   }
 
-  void injectGroupingActionCreator(GroupingActionCreator groupingCreator) {
-    groupingCreator.repository = (_modules["GroupingMemberRepositoryModule"]
+  void injectGroupingActionCreator(GroupingActionCreator groupingActionCreator) {
+    groupingActionCreator.repository = (_modules["GroupingMemberRepositoryModule"]
             as GroupingMemberRepositoryModule)
         .provideGroupingMemberRepository();
-    groupingCreator.dispatcher =
+    groupingActionCreator.dispatcher =
         (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();
-    groupingCreator.usecase =
+    groupingActionCreator.usecase =
         (_modules["GroupingUsecaseModule"] as GroupingUsecaseModule)
             .provideGroupingUsecase();
   }
