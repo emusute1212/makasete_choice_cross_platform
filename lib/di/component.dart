@@ -1,7 +1,7 @@
-import 'package:makasete_choice_cross_platform/action/action_creater/add_member_creator.dart';
-import 'package:makasete_choice_cross_platform/action/action_creater/grouping_creator.dart';
-import 'package:makasete_choice_cross_platform/action/action_creater/init_member_creator.dart';
-import 'package:makasete_choice_cross_platform/action/action_creater/remove_member_creator.dart';
+import 'package:makasete_choice_cross_platform/action/action_creater/add_member_action_creator.dart';
+import 'package:makasete_choice_cross_platform/action/action_creater/grouping_action_creator.dart';
+import 'package:makasete_choice_cross_platform/action/action_creater/init_member_action_creator.dart';
+import 'package:makasete_choice_cross_platform/action/action_creater/remove_member_action_creator.dart';
 import 'package:makasete_choice_cross_platform/di/module/dispatcher_module.dart';
 import 'package:makasete_choice_cross_platform/di/module/member_repository_module.dart';
 import 'package:makasete_choice_cross_platform/di/module/module.dart';
@@ -27,7 +27,7 @@ class Component {
     "GroupingMemberRepositoryModule": GroupingMemberRepositoryModule()
   };
 
-  void injectAddMemberCreator(AddMemberCreator addMemberCreator) {
+  void injectAddMemberActionCreator(AddMemberActionCreator addMemberCreator) {
     addMemberCreator.repository =
         (_modules["MemberRepositoryModule"] as MemberRepositoryModule)
             .provideMemberRepository();
@@ -35,7 +35,7 @@ class Component {
         (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();
   }
 
-  void injectRemoveMemberCreator(RemoveMemberCreator removeMemberCreator) {
+  void injectRemoveMemberActionCreator(RemoveMemberActionCreator removeMemberCreator) {
     removeMemberCreator.repository =
         (_modules["MemberRepositoryModule"] as MemberRepositoryModule)
             .provideMemberRepository();
@@ -48,7 +48,7 @@ class Component {
         (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();
   }
 
-  void injectInitMemberCreator(InitMemberCreator initMemberCreator) {
+  void injectInitMemberActionCreator(InitMemberActionCreator initMemberCreator) {
     initMemberCreator.repository =
         (_modules["MemberRepositoryModule"] as MemberRepositoryModule)
             .provideMemberRepository();
@@ -61,7 +61,7 @@ class Component {
         (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();
   }
 
-  void injectGroupingCreator(GroupingCreator groupingCreator) {
+  void injectGroupingActionCreator(GroupingActionCreator groupingCreator) {
     groupingCreator.repository = (_modules["GroupingMemberRepositoryModule"]
             as GroupingMemberRepositoryModule)
         .provideGroupingMemberRepository();
