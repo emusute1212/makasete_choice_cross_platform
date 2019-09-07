@@ -17,7 +17,7 @@ class MemberStore {
   }
 
   List<MemberEntity> getMembers() {
-    return List<MemberEntity>.unmodifiable(this._members);
+    return this._members;
   }
 }
 
@@ -33,9 +33,6 @@ class _AddMemberCallback extends Callback {
     if (payload.getAction() != Action.ADD_MEMBER) {
       return;
     }
-    // 同じファイル内だと、別クラスのプライベートメンバにアクセスできるので、
-    // それを用いてパッケージプライベート的な挙動を模倣している
-    // (言語仕様によって変更される恐れがあるので注意)
     _store._members = payload.getValue();
   }
 }
@@ -52,9 +49,6 @@ class _InitMemberCallback extends Callback {
     if (payload.getAction() != Action.INIT_MEMBER) {
       return;
     }
-    // 同じファイル内だと、別クラスのプライベートメンバにアクセスできるので、
-    // それを用いてパッケージプライベート的な挙動を模倣している
-    // (言語仕様によって変更される恐れがあるので注意)
     _store._members = payload.getValue();
   }
 }
@@ -71,9 +65,6 @@ class _RemoveMemberCallback extends Callback {
     if (payload.getAction() != Action.REMOVE_MEMBER) {
       return;
     }
-    // 同じファイル内だと、別クラスのプライベートメンバにアクセスできるので、
-    // それを用いてパッケージプライベート的な挙動を模倣している
-    // (言語仕様によって変更される恐れがあるので注意)
     _store._members = payload.getValue();
   }
 }

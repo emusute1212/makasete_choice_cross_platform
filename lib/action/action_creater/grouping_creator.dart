@@ -7,19 +7,19 @@ import 'package:makasete_choice_cross_platform/dispatcher/dispatcher.dart';
 import 'package:makasete_choice_cross_platform/dispatcher/payload.dart';
 import 'package:makasete_choice_cross_platform/usecase/grouping_usecase.dart';
 
-class GroupingActionCreator {
+class GroupingCreator {
   GroupingMemberRepository repository;
   Dispatcher dispatcher;
   GroupingUsecase usecase;
 
-  GroupingActionCreator() {
-    Component().injectGroupingActionCreator(this);
+  GroupingCreator() {
+    Component().injectGroupingCreator(this);
   }
 
   void groupMember(List<MemberEntity> members, int splitNumber) {
-    List<GroupingMemberEntity> groupingMembers =
+    List<GroupingMemberEntity> groupedMembers =
         usecase.groupMember(members, splitNumber);
-    repository.setGroupingMembers(groupingMembers);
+    repository.setGroupingMembers(groupedMembers);
 
     Payload payload = Payload<List<GroupingMemberEntity>>(
         Action.GROUPING, repository.getGroupingMembers());

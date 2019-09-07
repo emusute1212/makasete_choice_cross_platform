@@ -5,12 +5,12 @@ import 'package:makasete_choice_cross_platform/di/component.dart';
 import 'package:makasete_choice_cross_platform/dispatcher/dispatcher.dart';
 import 'package:makasete_choice_cross_platform/dispatcher/payload.dart';
 
-class InitMemberActionCreator {
+class InitMemberCreator {
   MemberRepository repository;
   Dispatcher dispatcher;
 
-  InitMemberActionCreator() {
-    Component().injectInitMemberActionCreator(this);
+  InitMemberCreator() {
+    Component().injectInitMemberCreator(this);
   }
 
   void initMember() {

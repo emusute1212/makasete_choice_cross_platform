@@ -12,7 +12,7 @@ class MemberRepository {
   }
 
   List<MemberEntity> getMembers() {
-    return List<MemberEntity>.unmodifiable(this._cache);
+    return _cache;
   }
 
   int _getIndexMax(List<MemberEntity> target) {

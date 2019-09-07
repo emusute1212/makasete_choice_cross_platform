@@ -5,12 +5,12 @@ import 'package:makasete_choice_cross_platform/di/component.dart';
 import 'package:makasete_choice_cross_platform/dispatcher/dispatcher.dart';
 import 'package:makasete_choice_cross_platform/dispatcher/payload.dart';
 
-class RemoveMemberActionCreator {
+class RemoveMemberCreator {
   MemberRepository repository;
   Dispatcher dispatcher;
 
-  RemoveMemberActionCreator() {
-    Component().injectRemoveMemberActionCreator(this);
+  RemoveMemberCreator() {
+    Component().injectRemoveMemberCreator(this);
   }
 
   void removeMember(int index) {
