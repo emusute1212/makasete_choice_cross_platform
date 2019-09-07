@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:makasete_choice_cross_platform/action/action_creater/add_member_creator.dart';
-import 'package:makasete_choice_cross_platform/action/action_creater/init_member_creator.dart';
-import 'package:makasete_choice_cross_platform/action/action_creater/remove_member_creator.dart';
+import 'package:makasete_choice_cross_platform/action/action_creater/add_member_action_creator.dart';
+import 'package:makasete_choice_cross_platform/action/action_creater/init_member_action_creator.dart';
+import 'package:makasete_choice_cross_platform/action/action_creater/remove_member_action_creator.dart';
 import 'package:makasete_choice_cross_platform/store/member_store.dart';
 
 class MakeMembersPage extends StatefulWidget {
@@ -14,9 +14,9 @@ class MakeMembersPage extends StatefulWidget {
 
 class _MakeMembersPage extends State<MakeMembersPage> {
   final _textController = TextEditingController();
-  final InitMemberCreator _initMemberCreator = InitMemberCreator();
-  final AddMemberCreator _addMemberCreator = AddMemberCreator();
-  final RemoveMemberCreator _removeMemberCreator = RemoveMemberCreator();
+  final InitMemberActionCreator _initMemberCreator = InitMemberActionCreator();
+  final AddMemberActionCreator _addMemberCreator = AddMemberActionCreator();
+  final RemoveMemberActionCreator _removeMemberCreator = RemoveMemberActionCreator();
   final MemberStore _memberStore = MemberStore();
 
   @override
