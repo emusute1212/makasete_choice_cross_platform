@@ -6,30 +6,30 @@ import 'package:makasete_choice_cross_platform/dispatcher/callback.dart';
 import 'package:makasete_choice_cross_platform/dispatcher/dispatcher.dart';
 import 'package:makasete_choice_cross_platform/dispatcher/payload.dart';
 
-class GroupStore {
+class GroupingStore {
   List<MemberEntity> _members = [];
   Dispatcher dispatcher;
   List<GroupingMemberEntity> _groupingMembers = [];
 
-  GroupStore() {
-    Component().injectGroupStore(this);
+  GroupingStore() {
+    Component().injectGroupingStore(this);
     dispatcher.register(_InitMemberCallback(this));
     dispatcher.register(_GroupingMemberCallback(this));
   }
 
   List<MemberEntity> getMembers() {
-    return this._members;
+    return List<MemberEntity>.unmodifiable(this._members);
   }
 
   List<GroupingMemberEntity> getGroupingMembers() {
-    return this._groupingMembers;
+    return List<GroupingMemberEntity>.unmodifiable(this._groupingMembers);
   }
 }
 
 class _InitMemberCallback extends Callback {
-  GroupStore _store;
+  GroupingStore _store;
 
-  _InitMemberCallback(GroupStore store) {
+  _InitMemberCallback(GroupingStore store) {
     this._store = store;
   }
 
@@ -38,14 +38,17 @@ class _InitMemberCallback extends Callback {
     if (payload.getAction() != Action.INIT_MEMBER) {
       return;
     }
+    // 同じファイル内だと、別クラスのプライベートメンバにアクセスできるので、
+    // それを用いてパッケージプライベート的な挙動を模倣している
+    // (言語仕様によって変更される恐れがあるので注意)
     _store._members = payload.getValue();
   }
 }
 
 class _GroupingMemberCallback extends Callback {
-  GroupStore _store;
+  GroupingStore _store;
 
-  _GroupingMemberCallback(GroupStore store) {
+  _GroupingMemberCallback(GroupingStore store) {
     this._store = store;
   }
 
@@ -54,6 +57,9 @@ class _GroupingMemberCallback extends Callback {
     if (payload.getAction() != Action.GROUPING) {
       return;
     }
+    // 同じファイル内だと、別クラスのプライベートメンバにアクセスできるので、
+    // それを用いてパッケージプライベート的な挙動を模倣している
+    // (言語仕様によって変更される恐れがあるので注意)
     _store._groupingMembers = payload.getValue();
   }
 }

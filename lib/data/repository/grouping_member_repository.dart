@@ -8,6 +8,6 @@ class GroupingMemberRepository {
   }
 
   List<GroupingMemberEntity> getGroupingMembers() {
-    return _cache;
+    return List<GroupingMemberEntity>.unmodifiable(this._cache);
   }
 }
