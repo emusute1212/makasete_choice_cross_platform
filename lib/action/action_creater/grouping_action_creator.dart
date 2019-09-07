@@ -17,9 +17,9 @@ class GroupingActionCreator {
   }
 
   void groupMember(List<MemberEntity> members, int splitNumber) {
-    List<GroupingMemberEntity> groupedMembers =
+    List<GroupingMemberEntity> groupingMembers =
         usecase.groupMember(members, splitNumber);
-    repository.setGroupingMembers(groupedMembers);
+    repository.setGroupingMembers(groupingMembers);
 
     Payload payload = Payload<List<GroupingMemberEntity>>(
         Action.GROUPING, repository.getGroupingMembers());

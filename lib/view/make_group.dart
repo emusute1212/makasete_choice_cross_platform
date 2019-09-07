@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:makasete_choice_cross_platform/action/action_creater/grouping_action_creator.dart';
 import 'package:makasete_choice_cross_platform/action/action_creater/init_member_action_creator.dart';
 import 'package:makasete_choice_cross_platform/data/entity/grouping_member_entity.dart';
-import 'package:makasete_choice_cross_platform/store/group_store.dart';
+import 'package:makasete_choice_cross_platform/store/grouping_store.dart';
 
 class MakeGroupPage extends StatefulWidget {
   MakeGroupPage({Key key, this.title}) : super(key: key);
@@ -15,7 +15,7 @@ class MakeGroupPage extends StatefulWidget {
 class _MakeGroupPage extends State<MakeGroupPage> {
   final InitMemberActionCreator _initMemberCreator = InitMemberActionCreator();
   final GroupingActionCreator _groupingCreator = GroupingActionCreator();
-  final GroupStore _groupStore = GroupStore();
+  final GroupingStore _groupStore = GroupingStore();
   List<DropdownMenuItem<String>> _dropDownMenuItems = [];
   int _splitNumber = 0;
 

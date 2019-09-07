@@ -5,7 +5,7 @@ import 'package:makasete_choice_cross_platform/action/action_creater/remove_memb
 import 'package:makasete_choice_cross_platform/di/module/dispatcher_module.dart';
 import 'package:makasete_choice_cross_platform/di/module/member_repository_module.dart';
 import 'package:makasete_choice_cross_platform/di/module/module.dart';
-import 'package:makasete_choice_cross_platform/store/group_store.dart';
+import 'package:makasete_choice_cross_platform/store/grouping_store.dart';
 import 'package:makasete_choice_cross_platform/store/member_store.dart';
 
 import 'module/grouping_member_repository_module.dart';
@@ -56,8 +56,8 @@ class Component {
         (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();
   }
 
-  void injectGroupStore(GroupStore groupStore) {
-    groupStore.dispatcher =
+  void injectGroupingStore(GroupingStore groupingStore) {
+    groupingStore.dispatcher =
         (_modules["DispatcherModule"] as DispatcherModule).provideDispatcher();
   }
 

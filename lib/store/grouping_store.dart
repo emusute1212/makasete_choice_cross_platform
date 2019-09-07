@@ -6,13 +6,13 @@ import 'package:makasete_choice_cross_platform/dispatcher/callback.dart';
 import 'package:makasete_choice_cross_platform/dispatcher/dispatcher.dart';
 import 'package:makasete_choice_cross_platform/dispatcher/payload.dart';
 
-class GroupStore {
+class GroupingStore {
   List<MemberEntity> _members = [];
   Dispatcher dispatcher;
   List<GroupingMemberEntity> _groupingMembers = [];
 
-  GroupStore() {
-    Component().injectGroupStore(this);
+  GroupingStore() {
+    Component().injectGroupingStore(this);
     dispatcher.register(_InitMemberCallback(this));
     dispatcher.register(_GroupingMemberCallback(this));
   }
@@ -27,9 +27,9 @@ class GroupStore {
 }
 
 class _InitMemberCallback extends Callback {
-  GroupStore _store;
+  GroupingStore _store;
 
-  _InitMemberCallback(GroupStore store) {
+  _InitMemberCallback(GroupingStore store) {
     this._store = store;
   }
 
@@ -43,9 +43,9 @@ class _InitMemberCallback extends Callback {
 }
 
 class _GroupingMemberCallback extends Callback {
-  GroupStore _store;
+  GroupingStore _store;
 
-  _GroupingMemberCallback(GroupStore store) {
+  _GroupingMemberCallback(GroupingStore store) {
     this._store = store;
   }
 
